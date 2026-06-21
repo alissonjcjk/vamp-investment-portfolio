@@ -1,0 +1,24 @@
+[package]
+name = "carteira-investimentos"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+askama = { version = "0.15", features = ["derive"] }
+axum = { version = "0.8", features = ["macros"] }
+axum-extra = { version = "0.12", features = ["cookie-signed"] }
+tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+sqlx = { version = "0.8", features = ["macros", "postgres", "runtime-tokio", "chrono"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+jwt-simple = "0.12"
+password-auth = "1"
+thiserror = "2"
+color-eyre = "0.6"
+dotenvy = "0.15"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+chrono = { version = "0.4", features = ["serde"] }
+
+[dev-dependencies]
+insta = { version = "1", features = ["json"] }
