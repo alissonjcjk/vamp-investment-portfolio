@@ -11,15 +11,12 @@
 <nav class="relative z-20 border-b border-white/5 bg-slate-950/80 backdrop-blur-xl sticky top-0">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 glass rounded-xl flex items-center justify-center glow-sm">
           <span class="text-lg select-none">🧛</span>
         </div>
         <span class="font-bold text-slate-100 tracking-tight">Vamp <span class="gradient-text">Portfolio</span></span>
       </div>
-
-      <!-- User actions -->
       <div class="flex items-center gap-3">
         <div class="hidden sm:flex items-center gap-2 glass rounded-xl px-3 py-2">
           <div class="w-6 h-6 rounded-lg bg-brand-600/30 flex items-center justify-center">
@@ -44,21 +41,16 @@
 {% block content %}
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-  <!-- ══════════════════════════════════════
-       SECTION 1 — Summary Cards + Chart
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 1: Summary Cards + Chart -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
     <!-- Total Value Card -->
     <div class="lg:col-span-1 glass rounded-2xl glow p-6 flex flex-col justify-between min-h-[200px]">
       <div>
         <p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Valor total da carteira</p>
-        <div class="mt-2">
-          <p class="text-4xl font-bold gradient-text leading-tight">R$&nbsp;{{ total_value_fmt }}</p>
-        </div>
+        <p class="text-4xl font-bold gradient-text leading-tight mt-2">R$&nbsp;{{ total_value_fmt }}</p>
         <p class="text-slate-500 text-xs mt-3">Atualizado agora mesmo</p>
       </div>
-
       <div class="mt-6 grid grid-cols-2 gap-3">
         <div class="glass rounded-xl p-3">
           <p class="text-slate-500 text-xs uppercase tracking-widest">Ativos</p>
@@ -80,48 +72,42 @@
           <h2 class="text-sm font-bold text-slate-200">Alocação da Carteira</h2>
           <p class="text-xs text-slate-500 mt-0.5">Distribuição percentual por ativo</p>
         </div>
-        {% if has_assets %}
-          <span class="text-xs glass px-3 py-1 rounded-full text-slate-400">Donut</span>
-        {% endif %}
+        {% if has_assets %}<span class="text-xs glass px-3 py-1 rounded-full text-slate-400">Donut</span>{% endif %}
       </div>
 
       {% if has_assets %}
-        <div class="flex flex-col sm:flex-row items-center gap-6">
-          <div class="relative w-52 h-52 flex-shrink-0">
-            <canvas id="allocationChart" width="208" height="208"></canvas>
-            <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-              <p class="text-xs text-slate-500">Total</p>
-              <p class="text-sm font-bold text-slate-200">100%</p>
-            </div>
-          </div>
-          <!-- Legend -->
-          <div class="flex-1 space-y-2 w-full">
-            {% for asset in assets %}
-            <div class="flex items-center justify-between glass rounded-xl px-3 py-2">
-              <div class="flex items-center gap-2">
-                <div class="w-2.5 h-2.5 rounded-full flex-shrink-0 chart-color-{{ loop.index }}"></div>
-                <span class="text-sm text-slate-300 font-bold">{{ asset.name }}</span>
-              </div>
-              <span class="text-xs text-slate-400 font-mono">{{ asset.percentage_fmt }}%</span>
-            </div>
-            {% endfor %}
+      <div class="flex flex-col sm:flex-row items-center gap-6">
+        <div class="relative w-52 h-52 flex-shrink-0">
+          <canvas id="allocationChart" width="208" height="208"></canvas>
+          <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+            <p class="text-xs text-slate-500">Total</p>
+            <p class="text-sm font-bold text-slate-200">100%</p>
           </div>
         </div>
+        <div class="flex-1 space-y-2 w-full">
+          {% for asset in assets %}
+          <div class="flex items-center justify-between glass rounded-xl px-3 py-2">
+            <div class="flex items-center gap-2">
+              <div class="w-2.5 h-2.5 rounded-full flex-shrink-0 chart-color-{{ loop.index }}"></div>
+              <span class="text-sm text-slate-300 font-bold">{{ asset.name }}</span>
+            </div>
+            <span class="text-xs text-slate-400 font-mono">{{ asset.percentage_fmt }}%</span>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
       {% else %}
-        <div class="flex flex-col items-center justify-center h-44 text-center">
-          <div class="text-4xl mb-3 opacity-40">📊</div>
-          <p class="text-slate-500 text-sm">Nenhum dado disponível ainda.</p>
-          <p class="text-slate-600 text-xs mt-1">Adicione ativos para ver o gráfico de alocação.</p>
-        </div>
+      <div class="flex flex-col items-center justify-center h-44 text-center">
+        <div class="text-4xl mb-3 opacity-40">📊</div>
+        <p class="text-slate-500 text-sm">Nenhum dado disponível ainda.</p>
+        <p class="text-slate-600 text-xs mt-1">Adicione ativos para ver o gráfico de alocação.</p>
+      </div>
       {% endif %}
     </div>
   </div>
 
-  <!-- ══════════════════════════════════════
-       SECTION 2 — Assets Table
-  ═══════════════════════════════════════ -->
+  <!-- SECTION 2: Assets Table -->
   <div class="glass rounded-2xl overflow-hidden">
-    <!-- Table Header -->
     <div class="px-6 py-5 flex items-center justify-between border-b border-white/5">
       <div>
         <h2 class="text-base font-bold text-slate-100">Meus Ativos</h2>
@@ -157,6 +143,7 @@
         Adicionar primeiro ativo
       </button>
     </div>
+
     {% else %}
     <!-- Desktop Table -->
     <div class="hidden sm:block overflow-x-auto">
@@ -174,7 +161,6 @@
         <tbody class="divide-y divide-white/5">
           {% for asset in assets %}
           <tr class="hover:bg-white/[0.03] transition-colors duration-150" id="asset-row-{{ asset.id }}">
-            <!-- Name -->
             <td class="px-6 py-4">
               <div class="flex items-center gap-3">
                 <div class="w-8 h-8 rounded-lg glass flex items-center justify-center flex-shrink-0 chart-color-bg-{{ loop.index }}">
@@ -186,7 +172,6 @@
             <td class="px-4 py-4 text-right text-slate-300 font-mono">{{ asset.quantity_fmt }}</td>
             <td class="px-4 py-4 text-right text-slate-300 font-mono">R$&nbsp;{{ asset.unit_value_fmt }}</td>
             <td class="px-4 py-4 text-right font-bold text-slate-100 font-mono">R$&nbsp;{{ asset.total_value_fmt }}</td>
-            <!-- Percentage bar -->
             <td class="px-4 py-4 text-right">
               <div class="flex items-center justify-end gap-2">
                 <div class="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
@@ -195,7 +180,6 @@
                 <span class="text-slate-400 font-mono text-xs w-10 text-right">{{ asset.percentage_fmt }}%</span>
               </div>
             </td>
-            <!-- Actions -->
             <td class="px-6 py-4">
               <div class="flex items-center justify-center gap-2">
                 <button
@@ -263,9 +247,17 @@
 
 </div>
 
-<!-- ══════════════════════════════════════
-     MODAL: Create / Edit Asset
-═══════════════════════════════════════ -->
+<!-- ── Toast Notification ─────────────────────────────────────────────────── -->
+<div id="toast" class="fixed bottom-6 right-6 z-[60] hidden">
+  <div id="toast-inner" class="flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl">
+    <svg id="toast-icon" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path id="toast-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+    <span id="toast-msg" class="text-sm font-bold"></span>
+  </div>
+</div>
+
+<!-- ── Modal: Create / Edit Asset ────────────────────────────────────────── -->
 <div id="asset-modal" class="fixed inset-0 z-50 hidden">
   <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="closeModal()"></div>
   <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
@@ -277,23 +269,52 @@
         </button>
       </div>
 
-      <div id="modal-error" class="hidden mb-4 p-3 glass rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-sm"></div>
+      <!-- Error banner inside modal -->
+      <div id="modal-error" class="hidden mb-4 p-3 glass rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-sm" role="alert"></div>
 
       <div class="space-y-4">
         <div>
-          <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Nome do Ativo</label>
-          <input id="modal-name" type="text" placeholder="Ex: PETR4, BTC, IVVB11" class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none text-sm" />
+          <label for="modal-name" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Nome do Ativo</label>
+          <input
+            id="modal-name"
+            name="name"
+            type="text"
+            placeholder="Ex: PETR4, BTC, IVVB11"
+            required
+            minlength="1"
+            maxlength="64"
+            class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all"
+          />
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Quantidade</label>
-            <input id="modal-quantity" type="number" step="0.0001" min="0.0001" placeholder="0,00" class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none text-sm" />
+            <label for="modal-quantity" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Quantidade</label>
+            <input
+              id="modal-quantity"
+              name="quantity"
+              type="number"
+              step="0.0001"
+              min="0.0001"
+              placeholder="0.00"
+              required
+              class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all"
+            />
           </div>
           <div>
-            <label class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Preço Unit. (R$)</label>
-            <input id="modal-unit-value" type="number" step="0.01" min="0.01" placeholder="0,00" class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none text-sm" />
+            <label for="modal-unit-value" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Preço Unit. (R$)</label>
+            <input
+              id="modal-unit-value"
+              name="unit_value"
+              type="number"
+              step="0.01"
+              min="0.01"
+              placeholder="0.00"
+              required
+              class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all"
+            />
           </div>
         </div>
+        <!-- Live total preview -->
         <div class="glass rounded-xl px-4 py-3 flex justify-between items-center">
           <span class="text-xs text-slate-500 uppercase tracking-widest">Valor total estimado</span>
           <span id="modal-total" class="font-bold text-slate-200 font-mono text-sm">R$ 0,00</span>
@@ -301,14 +322,14 @@
       </div>
 
       <div class="flex gap-3 mt-6">
-        <button onclick="closeModal()" class="flex-1 py-3 glass glass-hover rounded-xl text-slate-400 font-bold text-sm">Cancelar</button>
-        <button id="modal-submit" onclick="submitAsset()" class="flex-1 py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm glow-sm hover:scale-[1.02] active:scale-[0.98]">Salvar</button>
+        <button onclick="closeModal()" class="flex-1 py-3 glass glass-hover rounded-xl text-slate-400 font-bold text-sm transition-all">Cancelar</button>
+        <button id="modal-submit" onclick="submitAsset()" class="flex-1 py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm glow-sm hover:scale-[1.02] active:scale-[0.98] transition-all">Salvar</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Delete Confirm Modal -->
+<!-- ── Modal: Delete Confirmation ────────────────────────────────────────── -->
 <div id="delete-modal" class="fixed inset-0 z-50 hidden">
   <div class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm" onclick="closeDeleteModal()"></div>
   <div class="relative z-10 min-h-screen flex items-center justify-center p-4">
@@ -318,7 +339,7 @@
       <p class="text-slate-400 text-sm mb-6">Tem certeza que deseja excluir o ativo <strong id="delete-name" class="text-slate-200"></strong>? Esta ação não pode ser desfeita.</p>
       <div class="flex gap-3">
         <button onclick="closeDeleteModal()" class="flex-1 py-3 glass glass-hover rounded-xl text-slate-400 font-bold text-sm">Cancelar</button>
-        <button id="delete-confirm-btn" class="flex-1 py-3 bg-red-500/80 hover:bg-red-500 text-white font-bold rounded-xl text-sm">Excluir</button>
+        <button id="delete-confirm-btn" class="flex-1 py-3 bg-red-500/80 hover:bg-red-500 text-white font-bold rounded-xl text-sm transition-all">Excluir</button>
       </div>
     </div>
   </div>
@@ -327,7 +348,7 @@
 
 {% block scripts %}
 <script>
-// ── Chart colors palette ─────────────────────────────────────────────────────
+// ── Chart colors palette ──────────────────────────────────────────────────────
 const CHART_COLORS = [
   '#a78bfa','#818cf8','#67e8f9','#34d399','#fb923c',
   '#f472b6','#facc15','#60a5fa','#4ade80','#e879f9',
@@ -337,7 +358,6 @@ const CHART_COLORS = [
 {% if has_assets %}
 const chartLabels = [{% for a in assets %}'{{ a.name }}',{% endfor %}];
 const chartData   = [{% for a in assets %}{{ a.percentage }},{% endfor %}];
-
 const ctx = document.getElementById('allocationChart');
 if (ctx) {
   new Chart(ctx, {
@@ -366,118 +386,219 @@ if (ctx) {
           titleColor: '#e2e8f0',
           bodyColor: '#94a3b8',
           padding: 12,
-          callbacks: {
-            label: ctx => ` ${ctx.parsed.toFixed(2)}%`,
-          }
+          callbacks: { label: c => ` ${c.parsed.toFixed(2)}%` }
         }
       }
     }
   });
 }
 
-// Apply chart colors to legend dots (via JS since Askama can't generate dynamic styles)
+// Apply chart palette to legend dots and icon badges
 {% for a in assets %}
 (function() {
   const i = {{ loop.index }} - 1;
-  document.querySelectorAll('.chart-color-{{ loop.index }}').forEach(el => el.style.backgroundColor = CHART_COLORS[i % CHART_COLORS.length]);
+  const color = CHART_COLORS[i % CHART_COLORS.length];
+  document.querySelectorAll('.chart-color-{{ loop.index }}').forEach(el => {
+    el.style.backgroundColor = color;
+  });
   document.querySelectorAll('.chart-color-bg-{{ loop.index }}').forEach(el => {
-    el.style.background = CHART_COLORS[i % CHART_COLORS.length] + '22';
-    el.style.color = CHART_COLORS[i % CHART_COLORS.length];
+    el.style.background = color + '22';
+    el.style.color = color;
   });
 })();
 {% endfor %}
 {% endif %}
 
-// ── Modal logic ───────────────────────────────────────────────────────────────
-let currentMode = 'create';
-let currentId   = null;
+// ── Toast notification ────────────────────────────────────────────────────────
+let _toastTimer;
+function showToast(msg, type) {
+  clearTimeout(_toastTimer);
+  type = type || 'success';
+  const toast = document.getElementById('toast');
+  const inner = document.getElementById('toast-inner');
+  const icon  = document.getElementById('toast-icon');
+  const text  = document.getElementById('toast-msg');
+  text.textContent = msg;
+  if (type === 'success') {
+    inner.className = 'flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl border border-emerald-500/30 bg-emerald-500/10';
+    icon.className  = 'w-5 h-5 flex-shrink-0 text-emerald-400';
+    text.className  = 'text-sm font-bold text-emerald-300';
+  } else {
+    inner.className = 'flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl border border-red-500/30 bg-red-500/10';
+    icon.className  = 'w-5 h-5 flex-shrink-0 text-red-400';
+    text.className  = 'text-sm font-bold text-red-300';
+  }
+  toast.classList.remove('hidden');
+  _toastTimer = setTimeout(() => toast.classList.add('hidden'), 3500);
+}
+
+// ── Friendly backend error mapping ────────────────────────────────────────────
+const ERROR_MAP = {
+  'asset does not exist':   'Ativo não encontrado. Atualize a página.',
+  'user does not exist':    'Usuário não encontrado.',
+  'invalid credentials':    'Credenciais inválidas.',
+  'username already taken': 'Nome de usuário já está em uso.',
+  'missing authorization':  'Sessão expirada. Faça login novamente.',
+  'invalid asset data':     'Dados inválidos: quantidade e preço devem ser maiores que zero.',
+};
+function friendlyError(raw) {
+  if (!raw) return 'Erro inesperado. Tente novamente.';
+  const lower = raw.toLowerCase();
+  for (const [key, val] of Object.entries(ERROR_MAP)) {
+    if (lower.includes(key)) return val;
+  }
+  return raw;
+}
+
+// ── Modal: state and helpers ──────────────────────────────────────────────────
+let _mode = 'create';
+let _editId = null;
 
 function openModal(mode, id, name, qty, uv) {
-  currentMode = mode;
-  currentId   = id || null;
+  _mode   = mode;
+  _editId = id || null;
   document.getElementById('asset-modal').classList.remove('hidden');
   document.getElementById('modal-error').classList.add('hidden');
-  document.getElementById('modal-title').textContent = mode === 'edit' ? 'Editar Ativo' : 'Novo Ativo';
-  document.getElementById('modal-name').value       = name  || '';
-  document.getElementById('modal-quantity').value   = qty   !== undefined ? qty : '';
-  document.getElementById('modal-unit-value').value = uv    !== undefined ? uv  : '';
-  document.getElementById('modal-name').disabled    = (mode === 'edit');
+  document.getElementById('modal-title').textContent = (mode === 'edit') ? 'Editar Ativo' : 'Novo Ativo';
+
+  const nameEl = document.getElementById('modal-name');
+  const qtyEl  = document.getElementById('modal-quantity');
+  const uvEl   = document.getElementById('modal-unit-value');
+
+  nameEl.value    = (name !== undefined && name !== null) ? String(name) : '';
+  qtyEl.value     = (qty  !== undefined && qty  !== null) ? String(qty)  : '';
+  uvEl.value      = (uv   !== undefined && uv   !== null) ? String(uv)   : '';
+  nameEl.disabled = (mode === 'edit');
+
   updateModalTotal();
+  // Autofocus: quantity field when editing (name disabled), name field when creating
+  setTimeout(() => { (mode === 'edit' ? qtyEl : nameEl).focus(); }, 80);
 }
+
 function closeModal() {
   document.getElementById('asset-modal').classList.add('hidden');
 }
+
 function updateModalTotal() {
   const q  = parseFloat(document.getElementById('modal-quantity').value)   || 0;
   const uv = parseFloat(document.getElementById('modal-unit-value').value) || 0;
-  document.getElementById('modal-total').textContent = 'R$ ' + (q * uv).toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+  document.getElementById('modal-total').textContent =
+    'R$ ' + (q * uv).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
 document.getElementById('modal-quantity').addEventListener('input', updateModalTotal);
 document.getElementById('modal-unit-value').addEventListener('input', updateModalTotal);
 
+// ── Submit (create or edit) ───────────────────────────────────────────────────
 async function submitAsset() {
-  const name      = document.getElementById('modal-name').value.trim();
-  const quantity  = parseFloat(document.getElementById('modal-quantity').value);
-  const unitValue = parseFloat(document.getElementById('modal-unit-value').value);
-  const errEl     = document.getElementById('modal-error');
+  const nameEl = document.getElementById('modal-name');
+  const qtyEl  = document.getElementById('modal-quantity');
+  const uvEl   = document.getElementById('modal-unit-value');
+  const errEl  = document.getElementById('modal-error');
 
-  if (!name || isNaN(quantity) || isNaN(unitValue) || quantity <= 0 || unitValue <= 0) {
-    errEl.textContent = 'Preencha todos os campos corretamente com valores positivos.';
+  const name      = nameEl.value.trim();
+  const quantity  = parseFloat(qtyEl.value);
+  const unitValue = parseFloat(uvEl.value);
+
+  // --- Client-side validation (mirrors AppError::InvalidAssetData) ------------
+  if (_mode === 'create' && name.length < 1) {
+    errEl.textContent = 'O nome do ativo não pode estar vazio.';
     errEl.classList.remove('hidden');
+    nameEl.focus();
+    return;
+  }
+  if (isNaN(quantity) || quantity <= 0) {
+    errEl.textContent = 'A quantidade deve ser um número positivo (ex: 10 ou 0.5).';
+    errEl.classList.remove('hidden');
+    qtyEl.focus();
+    return;
+  }
+  if (isNaN(unitValue) || unitValue <= 0) {
+    errEl.textContent = 'O preço unitário deve ser um número positivo (ex: 34.50).';
+    errEl.classList.remove('hidden');
+    uvEl.focus();
     return;
   }
   errEl.classList.add('hidden');
 
-  const url    = currentMode === 'edit' ? `/api/assets/${currentId}` : '/api/assets';
-  const method = currentMode === 'edit' ? 'PATCH' : 'POST';
-  const body   = currentMode === 'edit'
+  // --- API call ----------------------------------------------------------------
+  const url    = (_mode === 'edit') ? '/api/assets/' + _editId : '/api/assets';
+  const method = (_mode === 'edit') ? 'PATCH' : 'POST';
+  const payload = (_mode === 'edit')
     ? { quantity, unit_value: unitValue }
     : { name, quantity, unit_value: unitValue };
 
   const btn = document.getElementById('modal-submit');
-  btn.disabled = true; btn.textContent = 'Salvando...';
+  btn.disabled = true;
+  btn.textContent = 'Salvando...';
   try {
-    const res = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    const res = await fetch(url, {
+      method,
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      errEl.textContent = data.error || 'Erro ao salvar ativo.';
+      errEl.textContent = friendlyError(data.error);
       errEl.classList.remove('hidden');
     } else {
-      window.location.reload();
+      const verb = (_mode === 'edit') ? 'atualizado' : 'cadastrado';
+      closeModal();
+      showToast('Ativo ' + verb + ' com sucesso!');
+      setTimeout(() => window.location.reload(), 900);
     }
-  } catch {
-    errEl.textContent = 'Erro de conexão. Tente novamente.';
+  } catch (_e) {
+    errEl.textContent = 'Erro de conexão. Verifique sua rede e tente novamente.';
     errEl.classList.remove('hidden');
   } finally {
-    btn.disabled = false; btn.textContent = 'Salvar';
+    btn.disabled = false;
+    btn.textContent = 'Salvar';
   }
 }
 
 // ── Delete logic ──────────────────────────────────────────────────────────────
-let deleteId = null;
+let _deleteId = null;
+
 function confirmDelete(id, name) {
-  deleteId = id;
+  _deleteId = id;
   document.getElementById('delete-name').textContent = name;
   document.getElementById('delete-modal').classList.remove('hidden');
 }
+
 function closeDeleteModal() {
   document.getElementById('delete-modal').classList.add('hidden');
-  deleteId = null;
+  _deleteId = null;
 }
+
 document.getElementById('delete-confirm-btn').addEventListener('click', async () => {
-  if (!deleteId) return;
+  if (_deleteId === null) return;
   const btn = document.getElementById('delete-confirm-btn');
-  btn.disabled = true; btn.textContent = 'Excluindo...';
+  btn.disabled = true;
+  btn.textContent = 'Excluindo...';
   try {
-    await fetch(`/api/assets/${deleteId}`, { method: 'DELETE' });
-    window.location.reload();
-  } finally {
-    btn.disabled = false; btn.textContent = 'Excluir';
+    const res = await fetch('/api/assets/' + _deleteId, {
+      method: 'DELETE',
+      credentials: 'same-origin',
+    });
     closeDeleteModal();
+    if (res.ok || res.status === 204) {
+      showToast('Ativo excluído com sucesso!');
+      setTimeout(() => window.location.reload(), 900);
+    } else {
+      const data = await res.json().catch(() => ({}));
+      showToast(friendlyError(data.error), 'error');
+    }
+  } catch (_e) {
+    closeDeleteModal();
+    showToast('Erro de conexão ao excluir. Tente novamente.', 'error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Excluir';
   }
 });
 
-// Close modals with Escape
+// Fechar modais com Escape
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); closeDeleteModal(); }
 });
