@@ -15,16 +15,36 @@ pub fn router() -> Router<AppState> {
 #[derive(Deserialize)]
 struct CredentialsForm { username: String, password: String }
 
+// ── Templates ────────────────────────────────────────────────────────────────
+
+#[derive(Template)]
+#[template(path = "login.html")]
+struct LoginPage;
+
+#[derive(Template)]
+#[template(path = "register.html")]
+struct RegisterPage;
+
+// ── Handlers ─────────────────────────────────────────────────────────────────
+
 async fn dashboard() -> Html<&'static str> {
-    Html("TODO")
+    Html("TODO: dashboard")
 }
 
-async fn login_page() -> Html<&'static str> {
-    Html("TODO")
+/// Exibe a página de login. Redireciona para / se já autenticado.
+async fn login_page(user: Option<User>) -> Result<impl IntoResponse, AppError> {
+    if user.is_some() {
+        return Ok(Redirect::to("/").into_response());
+    }
+    Ok(Html(LoginPage.render()?).into_response())
 }
 
-async fn register_page() -> Html<&'static str> {
-    Html("TODO")
+/// Exibe a página de registro. Redireciona para / se já autenticado.
+async fn register_page(user: Option<User>) -> Result<impl IntoResponse, AppError> {
+    if user.is_some() {
+        return Ok(Redirect::to("/").into_response());
+    }
+    Ok(Html(RegisterPage.render()?).into_response())
 }
 
 async fn login(repository: Repository, jar: CookieJar, Form(form): Form<CredentialsForm>) -> Result<impl IntoResponse, AppError> {

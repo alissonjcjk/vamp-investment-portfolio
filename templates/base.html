@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Vamp Portfolio{% endblock %} — Investment Portfolio</title>
+  <meta name="description" content="{% block description %}Gerencie sua carteira de investimentos com segurança e elegância.{% endblock %}" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"Space Mono"', 'monospace'],
+          },
+          colors: {
+            brand: {
+              400: '#c084fc',
+              500: '#a855f7',
+              600: '#9333ea',
+              700: '#7e22ce',
+            }
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-12px)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Space Mono', monospace; }
+    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.10); }
+    .glass-hover:hover { background: rgba(255,255,255,0.08); transition: background 0.3s ease; }
+    .gradient-text { background: linear-gradient(135deg, #c084fc, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glow { box-shadow: 0 0 40px rgba(168,85,247,0.15), 0 0 80px rgba(168,85,247,0.05); }
+    .glow-sm { box-shadow: 0 0 20px rgba(168,85,247,0.2); }
+    .bg-mesh { background-image: radial-gradient(at 20% 20%, rgba(139,92,246,0.15) 0px, transparent 50%), radial-gradient(at 80% 80%, rgba(99,102,241,0.10) 0px, transparent 50%), radial-gradient(at 50% 50%, rgba(168,85,247,0.05) 0px, transparent 50%); }
+    input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px rgba(255,255,255,0.05) inset !important; -webkit-text-fill-color: #e2e8f0 !important; }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body class="min-h-screen bg-slate-950 bg-mesh text-slate-100 antialiased">
+
+  <!-- Ambient orbs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse-slow"></div>
+    <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-violet-600/5 rounded-full blur-3xl animate-float"></div>
+  </div>
+
+  {% block navbar %}{% endblock %}
+
+  <main class="relative z-10">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
