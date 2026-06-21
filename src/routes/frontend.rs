@@ -1,8 +1,18 @@
-use axum::{Router, Form, routing::get, response::{Html, IntoResponse, Redirect}};
-use axum_extra::extract::{CookieJar, cookie::Cookie};
+use crate::{
+    app::AppState,
+    auth::user::{UnauthenticatedUser, User},
+    error::AppError,
+    models::Asset,
+    repository::Repository,
+};
 use askama::Template;
+use axum::{
+    response::{Html, IntoResponse, Redirect},
+    routing::get,
+    Form, Router,
+};
+use axum_extra::extract::{cookie::Cookie, CookieJar};
 use serde::Deserialize;
-use crate::{app::AppState, auth::user::{UnauthenticatedUser, User}, error::AppError, models::Asset, repository::Repository};
 
 pub fn router() -> Router<AppState> {
     Router::new()
@@ -13,7 +23,10 @@ pub fn router() -> Router<AppState> {
 }
 
 #[derive(Deserialize)]
-struct CredentialsForm { username: String, password: String }
+struct CredentialsForm {
+    username: String,
+    password: String,
+}
 
 // ── View models ──────────────────────────────────────────────────────────────
 
@@ -76,7 +89,10 @@ struct RegisterPage;
 
 // ── Handlers ─────────────────────────────────────────────────────────────────
 
-async fn dashboard(user: Option<User>, repository: Repository) -> Result<impl IntoResponse, AppError> {
+async fn dashboard(
+    user: Option<User>,
+    repository: Repository,
+) -> Result<impl IntoResponse, AppError> {
     let user = match user {
         Some(u) => u,
         None => return Ok(Redirect::to("/login").into_response()),
@@ -86,36 +102,44 @@ async fn dashboard(user: Option<User>, repository: Repository) -> Result<impl In
     let total_value: f64 = assets.iter().map(Asset::total_value).sum();
     let has_assets = !assets.is_empty();
 
-    let asset_views: Vec<AssetView> = assets.iter().map(|a| {
-        let tv = a.total_value();
-        let pct = if total_value > 0.0 { (tv / total_value) * 100.0 } else { 0.0 };
-        let short_name_str = if a.name.chars().count() > 2 {
-            a.name.chars().take(2).collect::<String>().to_uppercase()
-        } else {
-            a.name.clone().to_uppercase()
-        };
+    let asset_views: Vec<AssetView> = assets
+        .iter()
+        .map(|a| {
+            let tv = a.total_value();
+            let pct = if total_value > 0.0 {
+                (tv / total_value) * 100.0
+            } else {
+                0.0
+            };
+            let short_name_str = if a.name.chars().count() > 2 {
+                a.name.chars().take(2).collect::<String>().to_uppercase()
+            } else {
+                a.name.clone().to_uppercase()
+            };
 
-        AssetView {
-            id: a.id,
-            name: a.name.clone(),
-            short_name: short_name_str,
-            quantity: a.quantity,
-            unit_value: a.unit_value,
-            total_value: tv,
-            percentage: pct,
-            quantity_fmt: fmt_qty(a.quantity),
-            unit_value_fmt: fmt_brl(a.unit_value),
-            total_value_fmt: fmt_brl(tv),
-            percentage_fmt: format!("{:.1}", pct),
-        }
-    }).collect();
+            AssetView {
+                id: a.id,
+                name: a.name.clone(),
+                short_name: short_name_str,
+                quantity: a.quantity,
+                unit_value: a.unit_value,
+                total_value: tv,
+                percentage: pct,
+                quantity_fmt: fmt_qty(a.quantity),
+                unit_value_fmt: fmt_brl(a.unit_value),
+                total_value_fmt: fmt_brl(tv),
+                percentage_fmt: format!("{:.1}", pct),
+            }
+        })
+        .collect();
 
     let html = DashboardPage {
         username: user.username().to_string(),
         total_value_fmt: fmt_brl(total_value),
         assets: asset_views,
         has_assets,
-    }.render()?;
+    }
+    .render()?;
     Ok(Html(html).into_response())
 }
 
@@ -135,21 +159,35 @@ async fn register_page(user: Option<User>) -> Result<impl IntoResponse, AppError
     Ok(Html(RegisterPage.render()?).into_response())
 }
 
-async fn login(repository: Repository, jar: CookieJar, Form(form): Form<CredentialsForm>) -> Result<impl IntoResponse, AppError> {
+async fn login(
+    repository: Repository,
+    jar: CookieJar,
+    Form(form): Form<CredentialsForm>,
+) -> Result<impl IntoResponse, AppError> {
     let unauth = UnauthenticatedUser::new(form.username, form.password);
     let record = unauth.authenticate(&repository).await?;
     let user = User::new(record.id, record.username);
     let token = user.auth_token()?;
-    let cookie = Cookie::build(("token", token)).http_only(true).path("/").build();
+    let cookie = Cookie::build(("token", token))
+        .http_only(true)
+        .path("/")
+        .build();
     Ok((jar.add(cookie), Redirect::to("/")))
 }
 
-async fn register(repository: Repository, jar: CookieJar, Form(form): Form<CredentialsForm>) -> Result<impl IntoResponse, AppError> {
+async fn register(
+    repository: Repository,
+    jar: CookieJar,
+    Form(form): Form<CredentialsForm>,
+) -> Result<impl IntoResponse, AppError> {
     let unauth = UnauthenticatedUser::new(form.username, form.password);
     let record = unauth.register(&repository).await?;
     let user = User::new(record.id, record.username);
     let token = user.auth_token()?;
-    let cookie = Cookie::build(("token", token)).http_only(true).path("/").build();
+    let cookie = Cookie::build(("token", token))
+        .http_only(true)
+        .path("/")
+        .build();
     Ok((jar.add(cookie), Redirect::to("/")))
 }
 
