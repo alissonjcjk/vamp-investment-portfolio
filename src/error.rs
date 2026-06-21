@@ -20,6 +20,8 @@ pub enum AppError {
     Template(#[from] askama::Error),
     #[error(transparent)]
     Jwt(#[from] jwt_simple::Error),
+    #[error("Invalid asset data")]
+    InvalidAssetData,
 }
 
 #[derive(Serialize)]
@@ -28,7 +30,7 @@ struct ErrorResponse { error: String }
 impl IntoResponse for AppError {
     fn into_response(self) -> axum::response::Response {
         let status = match self {
-            Self::UsernameTaken | Self::MissingAuthorization => StatusCode::BAD_REQUEST,
+            Self::UsernameTaken | Self::MissingAuthorization | Self::InvalidAssetData => StatusCode::BAD_REQUEST,
             Self::InvalidCredentials => StatusCode::UNAUTHORIZED,
             Self::AssetDoesNotExist | Self::UserDoesNotExist => StatusCode::NOT_FOUND,
             Self::Database(_) | Self::Template(_) | Self::Jwt(_) => StatusCode::INTERNAL_SERVER_ERROR,
