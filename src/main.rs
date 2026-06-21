@@ -1,10 +1,11 @@
 pub mod app;
+pub mod auth;
 pub mod error;
 pub mod models;
 pub mod repository;
-pub mod auth;
 pub mod routes;
 
-fn main() {
-    println!("Vamp Investment Portfolio");
+#[tokio::main]
+async fn main() -> color_eyre::Result<()> {
+    app::App::start().await
 }

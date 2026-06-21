@@ -1,1 +1,6 @@
-// routes/api.rs — endpoints REST/JSON da API
+use axum::Router;
+use crate::app::AppState;
+
+pub fn router() -> Router<AppState> {
+    Router::new()
+}
