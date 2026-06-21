@@ -1,0 +1,10 @@
+CREATE TABLE IF NOT EXISTS assets (
+    id BIGSERIAL PRIMARY KEY NOT NULL,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    name TEXT NOT NULL,
+    quantity DOUBLE PRECISION NOT NULL,
+    unit_value DOUBLE PRECISION NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    UNIQUE(user_id, name)
+);
