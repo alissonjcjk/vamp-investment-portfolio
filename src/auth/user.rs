@@ -5,7 +5,7 @@ use password_auth::VerifyError;
 use serde::{Deserialize, Serialize};
 use std::convert::Infallible;
 
-use crate::{error::AppError, models::UserRecord, repository::Repository, app::AppState};
+use crate::{app::AppState, error::AppError, models::UserRecord, repository::Repository};
 
 const JWT_DURATION_MINUTES: u64 = 60 * 24; // 24h de sessão
 
@@ -38,7 +38,9 @@ impl UnauthenticatedUser {
             .add_user(&self.username, &password_hash)
             .await
             .map_err(|err| match err {
-                sqlx::Error::Database(db_err) if db_err.is_unique_violation() => AppError::UsernameTaken,
+                sqlx::Error::Database(db_err) if db_err.is_unique_violation() => {
+                    AppError::UsernameTaken
+                }
                 err => AppError::Database(err),
             })
     }
@@ -78,8 +80,10 @@ impl User {
     pub fn from_auth_token(token: &str) -> Result<Self, AppError> {
         let secret = std::env::var("JWT_SECRET").expect("JWT_SECRET deve estar definida no .env");
         let key = HS256Key::from_bytes(secret.as_bytes());
-        let mut options = VerificationOptions::default();
-        options.time_tolerance = Some(Duration::from_secs(0));
+        let options = VerificationOptions {
+            time_tolerance: Some(Duration::from_secs(0)),
+            ..Default::default()
+        };
         let claims: UserClaims = key.verify_token::<UserClaims>(token, Some(options))?.custom;
         Ok(Self::new(claims.id, claims.username))
     }
@@ -123,20 +127,49 @@ mod tests {
     #[sqlx::test]
     async fn test_register_and_authenticate(pool: PgPool) {
         let repo = Repository::from(pool);
-        let unauth = UnauthenticatedUser::new("testuser".to_string(), "senha_segura123".to_string());
-        
+        let unauth =
+            UnauthenticatedUser::new("testuser".to_string(), "senha_segura123".to_string());
+
         let user = UnauthenticatedUser::new("testuser".to_string(), "senha_segura123".to_string())
             .register(&repo)
             .await
             .expect("Registro falhou");
         assert_eq!(user.username, "testuser");
 
-        let auth_result = unauth.authenticate(&repo).await.expect("Autenticacao falhou");
+        let auth_result = unauth
+            .authenticate(&repo)
+            .await
+            .expect("Autenticacao falhou");
         assert_eq!(auth_result.username, "testuser");
 
-        let bad_unauth = UnauthenticatedUser::new("testuser".to_string(), "senha_errada".to_string());
+        let bad_unauth =
+            UnauthenticatedUser::new("testuser".to_string(), "senha_errada".to_string());
         let bad_auth_result = bad_unauth.authenticate(&repo).await;
         assert!(matches!(bad_auth_result, Err(AppError::InvalidCredentials)));
+    }
+
+    #[sqlx::test]
+    async fn test_register_duplicate(pool: PgPool) {
+        let repo = Repository::from(pool);
+        UnauthenticatedUser::new("alice".to_string(), "senha".to_string())
+            .register(&repo)
+            .await
+            .unwrap();
+
+        let duplicate = UnauthenticatedUser::new("alice".to_string(), "123".to_string())
+            .register(&repo)
+            .await
+            .unwrap_err();
+
+        assert!(matches!(duplicate, AppError::UsernameTaken));
+    }
+
+    #[sqlx::test]
+    async fn test_authenticate_invalid_user(pool: PgPool) {
+        let repo = Repository::from(pool);
+        let unauth = UnauthenticatedUser::new("fantasma".to_string(), "123".to_string());
+        let err = unauth.authenticate(&repo).await.unwrap_err();
+        assert!(matches!(err, AppError::UserDoesNotExist));
     }
 
     #[test]
@@ -158,10 +191,13 @@ mod tests {
         let user = User::new(2, "expired_tester".to_string());
         let secret = "test-secret-key";
         let key = HS256Key::from_bytes(secret.as_bytes());
-        
+
         // Simulating expired token by setting custom expiration time
         let claims = Claims::with_custom_claims(
-            UserClaims { id: user.id, username: user.username.clone() },
+            UserClaims {
+                id: user.id,
+                username: user.username.clone(),
+            },
             Duration::from_secs(1), // Expires in slightly more than 0 to allow sleep
         );
 
@@ -171,6 +207,9 @@ mod tests {
 
         // Validation should fail
         let decode_result = User::from_auth_token(&token);
-        assert!(decode_result.is_err(), "Decoding should fail for expired token");
+        assert!(
+            decode_result.is_err(),
+            "Decoding should fail for expired token"
+        );
     }
 }
