@@ -43,7 +43,10 @@ O `.env` padrão já está pronto para uso local:
 
 ```env
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
+JWT_SECRET=troque-essa-chave-em-producao-12345
 ```
+
+> **Aviso de Segurança**: A variável `JWT_SECRET` deve ser gerada com uma chave criptográfica forte aleatória quando for subir em Produção. NUNCA utilize a chave de exemplo (ou uma hardcoded no código) fora do ambiente de desenvolvimento.
 
 ### 3. Subir o banco de dados (Docker)
 
