@@ -13,7 +13,7 @@
     <div class="flex items-center justify-between h-16">
       <div class="flex items-center gap-3">
         <div class="w-9 h-9 glass rounded-xl flex items-center justify-center glow-sm">
-          <span class="text-lg select-none">🧛</span>
+          <img src="/assets/vamp.png" alt="Vamp" class="w-full h-full scale-[2.5] object-contain pointer-events-none" />
         </div>
         <span class="font-bold text-slate-100 tracking-tight">Vamp <span class="gradient-text">Portfolio</span></span>
       </div>
@@ -21,14 +21,16 @@
         <div class="hidden sm:flex items-center gap-2 glass rounded-xl px-3 py-2">
           <div class="w-6 h-6 rounded-lg bg-brand-600/30 flex items-center justify-center">
             <svg class="w-3 h-3 text-brand-400" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
             </svg>
           </div>
           <span class="text-sm text-slate-300 font-bold">{{ username }}</span>
         </div>
-        <a href="/logout" class="flex items-center gap-2 px-3 py-2 glass glass-hover rounded-xl text-slate-400 hover:text-red-400 transition-all duration-200 text-sm">
+        <a href="/logout"
+          class="flex items-center gap-2 px-3 py-2 glass glass-hover rounded-xl text-slate-400 hover:text-red-400 transition-all duration-200 text-sm">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
           </svg>
           <span class="hidden sm:inline">Sair</span>
         </a>
@@ -113,13 +115,10 @@
         <h2 class="text-base font-bold text-slate-100">Meus Ativos</h2>
         <p class="text-xs text-slate-500 mt-0.5">Gerencie sua carteira de investimentos</p>
       </div>
-      <button
-        id="btn-new-asset"
-        onclick="openModal('create')"
-        class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-sm font-bold rounded-xl transition-all duration-200 glow-sm hover:scale-[1.02] active:scale-[0.98]"
-      >
+      <button id="btn-new-asset" onclick="openModal('create')"
+        class="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white text-sm font-bold rounded-xl transition-all duration-200 glow-sm hover:scale-[1.02] active:scale-[0.98]">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
         Novo Ativo
       </button>
@@ -129,16 +128,15 @@
     <!-- Empty State -->
     <div class="flex flex-col items-center justify-center py-20 px-6 text-center">
       <div class="w-20 h-20 glass rounded-2xl flex items-center justify-center mb-6 animate-float">
-        <span class="text-4xl">🦇</span>
+        <img src="/assets/grana.png" alt="Grana" class="w-full h-full scale-[3] object-contain pointer-events-none" />
       </div>
       <h3 class="text-lg font-bold text-slate-200 mb-2">Carteira vazia</h3>
-      <p class="text-slate-500 text-sm max-w-sm">Você ainda não tem ativos cadastrados. Adicione seu primeiro ativo para começar a monitorar sua carteira.</p>
-      <button
-        onclick="openModal('create')"
-        class="mt-8 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all duration-200 glow hover:scale-[1.03] active:scale-[0.97]"
-      >
+      <p class="text-slate-500 text-sm max-w-sm">Você ainda não tem ativos cadastrados. Adicione seu primeiro ativo para
+        começar a monitorar sua carteira.</p>
+      <button onclick="openModal('create')"
+        class="mt-8 flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all duration-200 glow hover:scale-[1.03] active:scale-[0.97]">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
         Adicionar primeiro ativo
       </button>
@@ -163,7 +161,8 @@
           <tr class="hover:bg-white/[0.03] transition-colors duration-150" id="asset-row-{{ asset.id }}">
             <td class="px-6 py-4">
               <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-lg glass flex items-center justify-center flex-shrink-0 chart-color-bg-{{ loop.index }}">
+                <div
+                  class="w-8 h-8 rounded-lg glass flex items-center justify-center flex-shrink-0 chart-color-bg-{{ loop.index }}">
                   <span class="text-xs font-bold">{{ asset.short_name }}</span>
                 </div>
                 <span class="font-bold text-slate-200">{{ asset.name }}</span>
@@ -175,7 +174,8 @@
             <td class="px-4 py-4 text-right">
               <div class="flex items-center justify-end gap-2">
                 <div class="w-16 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                  <div class="h-full bg-gradient-to-r from-brand-500 to-indigo-400 rounded-full" style="width: {{ asset.percentage_fmt }}%"></div>
+                  <div class="h-full bg-gradient-to-r from-brand-500 to-indigo-400 rounded-full"
+                    style="width: {{ asset.percentage_fmt }}%"></div>
                 </div>
                 <span class="text-slate-400 font-mono text-xs w-10 text-right">{{ asset.percentage_fmt }}%</span>
               </div>
@@ -185,19 +185,18 @@
                 <button
                   onclick="openModal('edit', {{ asset.id }}, '{{ asset.name }}', {{ asset.quantity }}, {{ asset.unit_value }})"
                   class="p-2 glass glass-hover rounded-lg text-slate-400 hover:text-brand-400 transition-all duration-150"
-                  title="Editar ativo"
-                >
+                  title="Editar ativo">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
                 </button>
-                <button
-                  onclick="confirmDelete({{ asset.id }}, '{{ asset.name }}')"
+                <button onclick="confirmDelete({{ asset.id }}, '{{ asset.name }}')"
                   class="p-2 glass glass-hover rounded-lg text-slate-400 hover:text-red-400 transition-all duration-150"
-                  title="Excluir ativo"
-                >
+                  title="Excluir ativo">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
                 </button>
               </div>
@@ -207,8 +206,10 @@
         </tbody>
         <tfoot>
           <tr class="border-t border-white/10 bg-white/[0.02]">
-            <td colspan="3" class="px-6 py-4 text-xs text-slate-500 uppercase tracking-widest font-bold">Total da Carteira</td>
-            <td class="px-4 py-4 text-right font-bold text-slate-100 font-mono text-base">R$&nbsp;{{ total_value_fmt }}</td>
+            <td colspan="3" class="px-6 py-4 text-xs text-slate-500 uppercase tracking-widest font-bold">Total da
+              Carteira</td>
+            <td class="px-4 py-4 text-right font-bold text-slate-100 font-mono text-base">R$&nbsp;{{ total_value_fmt }}
+            </td>
             <td class="px-4 py-4 text-right text-slate-400 font-mono text-xs">100%</td>
             <td></td>
           </tr>
@@ -236,8 +237,13 @@
           </div>
         </div>
         <div class="flex gap-2">
-          <button onclick="openModal('edit', {{ asset.id }}, '{{ asset.name }}', {{ asset.quantity }}, {{ asset.unit_value }})" class="flex-1 py-2 glass glass-hover rounded-xl text-xs font-bold text-slate-300 hover:text-brand-400 transition-all">✏️ Editar</button>
-          <button onclick="confirmDelete({{ asset.id }}, '{{ asset.name }}')" class="flex-1 py-2 glass glass-hover rounded-xl text-xs font-bold text-slate-300 hover:text-red-400 transition-all">🗑️ Excluir</button>
+          <button
+            onclick="openModal('edit', {{ asset.id }}, '{{ asset.name }}', {{ asset.quantity }}, {{ asset.unit_value }})"
+            class="flex-1 py-2 glass glass-hover rounded-xl text-xs font-bold text-slate-300 hover:text-brand-400 transition-all">✏️
+            Editar</button>
+          <button onclick="confirmDelete({{ asset.id }}, '{{ asset.name }}')"
+            class="flex-1 py-2 glass glass-hover rounded-xl text-xs font-bold text-slate-300 hover:text-red-400 transition-all">🗑️
+            Excluir</button>
         </div>
       </div>
       {% endfor %}
@@ -251,7 +257,8 @@
 <div id="toast" class="fixed bottom-6 right-6 z-[60] hidden">
   <div id="toast-inner" class="flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl">
     <svg id="toast-icon" class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path id="toast-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      <path id="toast-icon-path" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
     <span id="toast-msg" class="text-sm font-bold"></span>
   </div>
@@ -264,54 +271,41 @@
     <div class="w-full max-w-md glass rounded-2xl glow p-8">
       <div class="flex items-center justify-between mb-6">
         <h3 class="text-lg font-bold text-slate-100" id="modal-title">Novo Ativo</h3>
-        <button onclick="closeModal()" class="w-8 h-8 glass glass-hover rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-200">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        <button onclick="closeModal()"
+          class="w-8 h-8 glass glass-hover rounded-lg flex items-center justify-center text-slate-400 hover:text-slate-200">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
         </button>
       </div>
 
       <!-- Error banner inside modal -->
-      <div id="modal-error" class="hidden mb-4 p-3 glass rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-sm" role="alert"></div>
+      <div id="modal-error"
+        class="hidden mb-4 p-3 glass rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-sm"
+        role="alert"></div>
 
       <div class="space-y-4">
         <div>
-          <label for="modal-name" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Nome do Ativo</label>
-          <input
-            id="modal-name"
-            name="name"
-            type="text"
-            placeholder="Ex: PETR4, BTC, IVVB11"
-            required
-            minlength="1"
+          <label for="modal-name" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Nome do
+            Ativo</label>
+          <input id="modal-name" name="name" type="text" placeholder="Ex: PETR4, BTC, IVVB11" required minlength="1"
             maxlength="64"
-            class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all"
-          />
+            class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all" />
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label for="modal-quantity" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Quantidade</label>
-            <input
-              id="modal-quantity"
-              name="quantity"
-              type="number"
-              step="0.0001"
-              min="0.0001"
-              placeholder="0.00"
+            <label for="modal-quantity"
+              class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Quantidade</label>
+            <input id="modal-quantity" name="quantity" type="number" step="0.0001" min="0.0001" placeholder="0.00"
               required
-              class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all"
-            />
+              class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all" />
           </div>
           <div>
-            <label for="modal-unit-value" class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Preço Unit. (R$)</label>
-            <input
-              id="modal-unit-value"
-              name="unit_value"
-              type="number"
-              step="0.01"
-              min="0.01"
-              placeholder="0.00"
+            <label for="modal-unit-value"
+              class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Preço Unit. (R$)</label>
+            <input id="modal-unit-value" name="unit_value" type="number" step="0.01" min="0.01" placeholder="0.00"
               required
-              class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all"
-            />
+              class="w-full px-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/20 text-sm transition-all" />
           </div>
         </div>
         <!-- Live total preview -->
@@ -322,8 +316,10 @@
       </div>
 
       <div class="flex gap-3 mt-6">
-        <button onclick="closeModal()" class="flex-1 py-3 glass glass-hover rounded-xl text-slate-400 font-bold text-sm transition-all">Cancelar</button>
-        <button id="modal-submit" onclick="submitAsset()" class="flex-1 py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm glow-sm hover:scale-[1.02] active:scale-[0.98] transition-all">Salvar</button>
+        <button onclick="closeModal()"
+          class="flex-1 py-3 glass glass-hover rounded-xl text-slate-400 font-bold text-sm transition-all">Cancelar</button>
+        <button id="modal-submit" onclick="submitAsset()"
+          class="flex-1 py-3 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl text-sm glow-sm hover:scale-[1.02] active:scale-[0.98] transition-all">Salvar</button>
       </div>
     </div>
   </div>
@@ -336,10 +332,13 @@
     <div class="w-full max-w-sm glass rounded-2xl p-8 text-center">
       <div class="text-4xl mb-4">⚠️</div>
       <h3 class="text-lg font-bold text-slate-100 mb-2">Confirmar exclusão</h3>
-      <p class="text-slate-400 text-sm mb-6">Tem certeza que deseja excluir o ativo <strong id="delete-name" class="text-slate-200"></strong>? Esta ação não pode ser desfeita.</p>
+      <p class="text-slate-400 text-sm mb-6">Tem certeza que deseja excluir o ativo <strong id="delete-name"
+          class="text-slate-200"></strong>? Esta ação não pode ser desfeita.</p>
       <div class="flex gap-3">
-        <button onclick="closeDeleteModal()" class="flex-1 py-3 glass glass-hover rounded-xl text-slate-400 font-bold text-sm">Cancelar</button>
-        <button id="delete-confirm-btn" class="flex-1 py-3 bg-red-500/80 hover:bg-red-500 text-white font-bold rounded-xl text-sm transition-all">Excluir</button>
+        <button onclick="closeDeleteModal()"
+          class="flex-1 py-3 glass glass-hover rounded-xl text-slate-400 font-bold text-sm">Cancelar</button>
+        <button id="delete-confirm-btn"
+          class="flex-1 py-3 bg-red-500/80 hover:bg-red-500 text-white font-bold rounded-xl text-sm transition-all">Excluir</button>
       </div>
     </div>
   </div>
@@ -348,55 +347,55 @@
 
 {% block scripts %}
 <script>
-// ── Chart colors palette ──────────────────────────────────────────────────────
-const CHART_COLORS = [
-  '#a78bfa','#818cf8','#67e8f9','#34d399','#fb923c',
-  '#f472b6','#facc15','#60a5fa','#4ade80','#e879f9',
-];
+  // ── Chart colors palette ──────────────────────────────────────────────────────
+  const CHART_COLORS = [
+    '#a78bfa', '#818cf8', '#67e8f9', '#34d399', '#fb923c',
+    '#f472b6', '#facc15', '#60a5fa', '#4ade80', '#e879f9',
+  ];
 
-// ── Chart.js ──────────────────────────────────────────────────────────────────
-{% if has_assets %}
-const chartLabels = [{% for a in assets %}'{{ a.name }}',{% endfor %}];
-const chartData   = [{% for a in assets %}{{ a.percentage }},{% endfor %}];
-const ctx = document.getElementById('allocationChart');
-if (ctx) {
-  new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: chartLabels,
-      datasets: [{
-        data: chartData,
-        backgroundColor: CHART_COLORS.slice(0, chartLabels.length),
-        borderColor: 'rgba(15,23,42,0.9)',
-        borderWidth: 3,
-        hoverBorderWidth: 0,
-        hoverOffset: 8,
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      cutout: '68%',
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          backgroundColor: 'rgba(15,23,42,0.95)',
-          borderColor: 'rgba(255,255,255,0.1)',
-          borderWidth: 1,
-          titleColor: '#e2e8f0',
-          bodyColor: '#94a3b8',
-          padding: 12,
-          callbacks: { label: c => ` ${c.parsed.toFixed(2)}%` }
+  // ── Chart.js ──────────────────────────────────────────────────────────────────
+  {% if has_assets %}
+  const chartLabels = [{% for a in assets %}'{{ a.name }}', {% endfor %}];
+  const chartData = [{% for a in assets %}{ { a.percentage } }, {% endfor %}];
+  const ctx = document.getElementById('allocationChart');
+  if (ctx) {
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: chartLabels,
+        datasets: [{
+          data: chartData,
+          backgroundColor: CHART_COLORS.slice(0, chartLabels.length),
+          borderColor: 'rgba(15,23,42,0.9)',
+          borderWidth: 3,
+          hoverBorderWidth: 0,
+          hoverOffset: 8,
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '68%',
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: 'rgba(15,23,42,0.95)',
+            borderColor: 'rgba(255,255,255,0.1)',
+            borderWidth: 1,
+            titleColor: '#e2e8f0',
+            bodyColor: '#94a3b8',
+            padding: 12,
+            callbacks: { label: c => ` ${c.parsed.toFixed(2)}%` }
+          }
         }
       }
-    }
-  });
-}
+    });
+  }
 
-// Apply chart palette to legend dots and icon badges
-{% for a in assets %}
-(function() {
-  const i = {{ loop.index }} - 1;
+  // Apply chart palette to legend dots and icon badges
+  {% for a in assets %}
+  (function () {
+    const i = {{ loop.index }} - 1;
   const color = CHART_COLORS[i % CHART_COLORS.length];
   document.querySelectorAll('.chart-color-{{ loop.index }}').forEach(el => {
     el.style.backgroundColor = color;
@@ -405,202 +404,202 @@ if (ctx) {
     el.style.background = color + '22';
     el.style.color = color;
   });
-})();
-{% endfor %}
-{% endif %}
+}) ();
+  {% endfor %}
+  {% endif %}
 
-// ── Toast notification ────────────────────────────────────────────────────────
-let _toastTimer;
-function showToast(msg, type) {
-  clearTimeout(_toastTimer);
-  type = type || 'success';
-  const toast = document.getElementById('toast');
-  const inner = document.getElementById('toast-inner');
-  const icon  = document.getElementById('toast-icon');
-  const text  = document.getElementById('toast-msg');
-  text.textContent = msg;
-  if (type === 'success') {
-    inner.className = 'flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl border border-emerald-500/30 bg-emerald-500/10';
-    icon.className  = 'w-5 h-5 flex-shrink-0 text-emerald-400';
-    text.className  = 'text-sm font-bold text-emerald-300';
-  } else {
-    inner.className = 'flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl border border-red-500/30 bg-red-500/10';
-    icon.className  = 'w-5 h-5 flex-shrink-0 text-red-400';
-    text.className  = 'text-sm font-bold text-red-300';
+  // ── Toast notification ────────────────────────────────────────────────────────
+  let _toastTimer;
+  function showToast(msg, type) {
+    clearTimeout(_toastTimer);
+    type = type || 'success';
+    const toast = document.getElementById('toast');
+    const inner = document.getElementById('toast-inner');
+    const icon = document.getElementById('toast-icon');
+    const text = document.getElementById('toast-msg');
+    text.textContent = msg;
+    if (type === 'success') {
+      inner.className = 'flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl border border-emerald-500/30 bg-emerald-500/10';
+      icon.className = 'w-5 h-5 flex-shrink-0 text-emerald-400';
+      text.className = 'text-sm font-bold text-emerald-300';
+    } else {
+      inner.className = 'flex items-center gap-3 glass rounded-xl px-5 py-4 shadow-xl border border-red-500/30 bg-red-500/10';
+      icon.className = 'w-5 h-5 flex-shrink-0 text-red-400';
+      text.className = 'text-sm font-bold text-red-300';
+    }
+    toast.classList.remove('hidden');
+    _toastTimer = setTimeout(() => toast.classList.add('hidden'), 3500);
   }
-  toast.classList.remove('hidden');
-  _toastTimer = setTimeout(() => toast.classList.add('hidden'), 3500);
-}
 
-// ── Friendly backend error mapping ────────────────────────────────────────────
-const ERROR_MAP = {
-  'asset does not exist':   'Ativo não encontrado. Atualize a página.',
-  'user does not exist':    'Usuário não encontrado.',
-  'invalid credentials':    'Credenciais inválidas.',
-  'username already taken': 'Nome de usuário já está em uso.',
-  'missing authorization':  'Sessão expirada. Faça login novamente.',
-  'invalid asset data':     'Dados inválidos: quantidade e preço devem ser maiores que zero.',
-};
-function friendlyError(raw) {
-  if (!raw) return 'Erro inesperado. Tente novamente.';
-  const lower = raw.toLowerCase();
-  for (const [key, val] of Object.entries(ERROR_MAP)) {
-    if (lower.includes(key)) return val;
+  // ── Friendly backend error mapping ────────────────────────────────────────────
+  const ERROR_MAP = {
+    'asset does not exist': 'Ativo não encontrado. Atualize a página.',
+    'user does not exist': 'Usuário não encontrado.',
+    'invalid credentials': 'Credenciais inválidas.',
+    'username already taken': 'Nome de usuário já está em uso.',
+    'missing authorization': 'Sessão expirada. Faça login novamente.',
+    'invalid asset data': 'Dados inválidos: quantidade e preço devem ser maiores que zero.',
+  };
+  function friendlyError(raw) {
+    if (!raw) return 'Erro inesperado. Tente novamente.';
+    const lower = raw.toLowerCase();
+    for (const [key, val] of Object.entries(ERROR_MAP)) {
+      if (lower.includes(key)) return val;
+    }
+    return raw;
   }
-  return raw;
-}
 
-// ── Modal: state and helpers ──────────────────────────────────────────────────
-let _mode = 'create';
-let _editId = null;
+  // ── Modal: state and helpers ──────────────────────────────────────────────────
+  let _mode = 'create';
+  let _editId = null;
 
-function openModal(mode, id, name, qty, uv) {
-  _mode   = mode;
-  _editId = id || null;
-  document.getElementById('asset-modal').classList.remove('hidden');
-  document.getElementById('modal-error').classList.add('hidden');
-  document.getElementById('modal-title').textContent = (mode === 'edit') ? 'Editar Ativo' : 'Novo Ativo';
+  function openModal(mode, id, name, qty, uv) {
+    _mode = mode;
+    _editId = id || null;
+    document.getElementById('asset-modal').classList.remove('hidden');
+    document.getElementById('modal-error').classList.add('hidden');
+    document.getElementById('modal-title').textContent = (mode === 'edit') ? 'Editar Ativo' : 'Novo Ativo';
 
-  const nameEl = document.getElementById('modal-name');
-  const qtyEl  = document.getElementById('modal-quantity');
-  const uvEl   = document.getElementById('modal-unit-value');
+    const nameEl = document.getElementById('modal-name');
+    const qtyEl = document.getElementById('modal-quantity');
+    const uvEl = document.getElementById('modal-unit-value');
 
-  nameEl.value    = (name !== undefined && name !== null) ? String(name) : '';
-  qtyEl.value     = (qty  !== undefined && qty  !== null) ? String(qty)  : '';
-  uvEl.value      = (uv   !== undefined && uv   !== null) ? String(uv)   : '';
-  nameEl.disabled = (mode === 'edit');
+    nameEl.value = (name !== undefined && name !== null) ? String(name) : '';
+    qtyEl.value = (qty !== undefined && qty !== null) ? String(qty) : '';
+    uvEl.value = (uv !== undefined && uv !== null) ? String(uv) : '';
+    nameEl.disabled = (mode === 'edit');
 
-  updateModalTotal();
-  // Autofocus: quantity field when editing (name disabled), name field when creating
-  setTimeout(() => { (mode === 'edit' ? qtyEl : nameEl).focus(); }, 80);
-}
-
-function closeModal() {
-  document.getElementById('asset-modal').classList.add('hidden');
-}
-
-function updateModalTotal() {
-  const q  = parseFloat(document.getElementById('modal-quantity').value)   || 0;
-  const uv = parseFloat(document.getElementById('modal-unit-value').value) || 0;
-  document.getElementById('modal-total').textContent =
-    'R$ ' + (q * uv).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
-
-document.getElementById('modal-quantity').addEventListener('input', updateModalTotal);
-document.getElementById('modal-unit-value').addEventListener('input', updateModalTotal);
-
-// ── Submit (create or edit) ───────────────────────────────────────────────────
-async function submitAsset() {
-  const nameEl = document.getElementById('modal-name');
-  const qtyEl  = document.getElementById('modal-quantity');
-  const uvEl   = document.getElementById('modal-unit-value');
-  const errEl  = document.getElementById('modal-error');
-
-  const name      = nameEl.value.trim();
-  const quantity  = parseFloat(qtyEl.value);
-  const unitValue = parseFloat(uvEl.value);
-
-  // --- Client-side validation (mirrors AppError::InvalidAssetData) ------------
-  if (_mode === 'create' && name.length < 1) {
-    errEl.textContent = 'O nome do ativo não pode estar vazio.';
-    errEl.classList.remove('hidden');
-    nameEl.focus();
-    return;
+    updateModalTotal();
+    // Autofocus: quantity field when editing (name disabled), name field when creating
+    setTimeout(() => { (mode === 'edit' ? qtyEl : nameEl).focus(); }, 80);
   }
-  if (isNaN(quantity) || quantity <= 0) {
-    errEl.textContent = 'A quantidade deve ser um número positivo (ex: 10 ou 0.5).';
-    errEl.classList.remove('hidden');
-    qtyEl.focus();
-    return;
-  }
-  if (isNaN(unitValue) || unitValue <= 0) {
-    errEl.textContent = 'O preço unitário deve ser um número positivo (ex: 34.50).';
-    errEl.classList.remove('hidden');
-    uvEl.focus();
-    return;
-  }
-  errEl.classList.add('hidden');
 
-  // --- API call ----------------------------------------------------------------
-  const url    = (_mode === 'edit') ? '/api/assets/' + _editId : '/api/assets';
-  const method = (_mode === 'edit') ? 'PATCH' : 'POST';
-  const payload = (_mode === 'edit')
-    ? { quantity, unit_value: unitValue }
-    : { name, quantity, unit_value: unitValue };
+  function closeModal() {
+    document.getElementById('asset-modal').classList.add('hidden');
+  }
 
-  const btn = document.getElementById('modal-submit');
-  btn.disabled = true;
-  btn.textContent = 'Salvando...';
-  try {
-    const res = await fetch(url, {
-      method,
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    });
-    if (!res.ok) {
-      const data = await res.json().catch(() => ({}));
-      errEl.textContent = friendlyError(data.error);
+  function updateModalTotal() {
+    const q = parseFloat(document.getElementById('modal-quantity').value) || 0;
+    const uv = parseFloat(document.getElementById('modal-unit-value').value) || 0;
+    document.getElementById('modal-total').textContent =
+      'R$ ' + (q * uv).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  document.getElementById('modal-quantity').addEventListener('input', updateModalTotal);
+  document.getElementById('modal-unit-value').addEventListener('input', updateModalTotal);
+
+  // ── Submit (create or edit) ───────────────────────────────────────────────────
+  async function submitAsset() {
+    const nameEl = document.getElementById('modal-name');
+    const qtyEl = document.getElementById('modal-quantity');
+    const uvEl = document.getElementById('modal-unit-value');
+    const errEl = document.getElementById('modal-error');
+
+    const name = nameEl.value.trim();
+    const quantity = parseFloat(qtyEl.value);
+    const unitValue = parseFloat(uvEl.value);
+
+    // --- Client-side validation (mirrors AppError::InvalidAssetData) ------------
+    if (_mode === 'create' && name.length < 1) {
+      errEl.textContent = 'O nome do ativo não pode estar vazio.';
       errEl.classList.remove('hidden');
-    } else {
-      const verb = (_mode === 'edit') ? 'atualizado' : 'cadastrado';
-      closeModal();
-      showToast('Ativo ' + verb + ' com sucesso!');
-      setTimeout(() => window.location.reload(), 900);
+      nameEl.focus();
+      return;
     }
-  } catch (_e) {
-    errEl.textContent = 'Erro de conexão. Verifique sua rede e tente novamente.';
-    errEl.classList.remove('hidden');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Salvar';
-  }
-}
-
-// ── Delete logic ──────────────────────────────────────────────────────────────
-let _deleteId = null;
-
-function confirmDelete(id, name) {
-  _deleteId = id;
-  document.getElementById('delete-name').textContent = name;
-  document.getElementById('delete-modal').classList.remove('hidden');
-}
-
-function closeDeleteModal() {
-  document.getElementById('delete-modal').classList.add('hidden');
-  _deleteId = null;
-}
-
-document.getElementById('delete-confirm-btn').addEventListener('click', async () => {
-  if (_deleteId === null) return;
-  const btn = document.getElementById('delete-confirm-btn');
-  btn.disabled = true;
-  btn.textContent = 'Excluindo...';
-  try {
-    const res = await fetch('/api/assets/' + _deleteId, {
-      method: 'DELETE',
-      credentials: 'same-origin',
-    });
-    closeDeleteModal();
-    if (res.ok || res.status === 204) {
-      showToast('Ativo excluído com sucesso!');
-      setTimeout(() => window.location.reload(), 900);
-    } else {
-      const data = await res.json().catch(() => ({}));
-      showToast(friendlyError(data.error), 'error');
+    if (isNaN(quantity) || quantity <= 0) {
+      errEl.textContent = 'A quantidade deve ser um número positivo (ex: 10 ou 0.5).';
+      errEl.classList.remove('hidden');
+      qtyEl.focus();
+      return;
     }
-  } catch (_e) {
-    closeDeleteModal();
-    showToast('Erro de conexão ao excluir. Tente novamente.', 'error');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = 'Excluir';
-  }
-});
+    if (isNaN(unitValue) || unitValue <= 0) {
+      errEl.textContent = 'O preço unitário deve ser um número positivo (ex: 34.50).';
+      errEl.classList.remove('hidden');
+      uvEl.focus();
+      return;
+    }
+    errEl.classList.add('hidden');
 
-// Fechar modais com Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModal(); closeDeleteModal(); }
-});
+    // --- API call ----------------------------------------------------------------
+    const url = (_mode === 'edit') ? '/api/assets/' + _editId : '/api/assets';
+    const method = (_mode === 'edit') ? 'PATCH' : 'POST';
+    const payload = (_mode === 'edit')
+      ? { quantity, unit_value: unitValue }
+      : { name, quantity, unit_value: unitValue };
+
+    const btn = document.getElementById('modal-submit');
+    btn.disabled = true;
+    btn.textContent = 'Salvando...';
+    try {
+      const res = await fetch(url, {
+        method,
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        errEl.textContent = friendlyError(data.error);
+        errEl.classList.remove('hidden');
+      } else {
+        const verb = (_mode === 'edit') ? 'atualizado' : 'cadastrado';
+        closeModal();
+        showToast('Ativo ' + verb + ' com sucesso!');
+        setTimeout(() => window.location.reload(), 900);
+      }
+    } catch (_e) {
+      errEl.textContent = 'Erro de conexão. Verifique sua rede e tente novamente.';
+      errEl.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Salvar';
+    }
+  }
+
+  // ── Delete logic ──────────────────────────────────────────────────────────────
+  let _deleteId = null;
+
+  function confirmDelete(id, name) {
+    _deleteId = id;
+    document.getElementById('delete-name').textContent = name;
+    document.getElementById('delete-modal').classList.remove('hidden');
+  }
+
+  function closeDeleteModal() {
+    document.getElementById('delete-modal').classList.add('hidden');
+    _deleteId = null;
+  }
+
+  document.getElementById('delete-confirm-btn').addEventListener('click', async () => {
+    if (_deleteId === null) return;
+    const btn = document.getElementById('delete-confirm-btn');
+    btn.disabled = true;
+    btn.textContent = 'Excluindo...';
+    try {
+      const res = await fetch('/api/assets/' + _deleteId, {
+        method: 'DELETE',
+        credentials: 'same-origin',
+      });
+      closeDeleteModal();
+      if (res.ok || res.status === 204) {
+        showToast('Ativo excluído com sucesso!');
+        setTimeout(() => window.location.reload(), 900);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        showToast(friendlyError(data.error), 'error');
+      }
+    } catch (_e) {
+      closeDeleteModal();
+      showToast('Erro de conexão ao excluir. Tente novamente.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Excluir';
+    }
+  });
+
+  // Fechar modais com Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeModal(); closeDeleteModal(); }
+  });
 </script>
 {% endblock %}
