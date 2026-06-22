@@ -19,7 +19,10 @@ impl App {
         dotenvy::dotenv().ok();
         let state = AppState::new().await?;
         let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await?;
+        use tower_http::services::ServeDir;
+
         let router = axum::Router::new()
+            .nest_service("/assets", ServeDir::new("src/assets"))
             .nest("/api", crate::routes::api::router())
             .merge(crate::routes::frontend::router())
             .with_state(state);
