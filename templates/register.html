@@ -4,14 +4,44 @@
 {% block description %}Crie sua conta no Vamp Portfolio e comece a gerenciar seus investimentos agora.{% endblock %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center px-4 py-16">
+<!-- Background decorativa: imagem aparece suavemente na metade direita da tela -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+  <img src="/assets/ideia.jpg" alt="" aria-hidden="true"
+    class="w-full h-full object-cover opacity-0 animate-bg-reveal" />
+  <div class="absolute inset-0 bg-slate-950/60 pointer-events-none"></div>
+</div>
+
+<style>
+  @keyframes bgReveal {
+    from {
+      opacity: 0;
+      transform: scale(1.04);
+    }
+
+    to {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+  }
+
+  .animate-bg-reveal {
+    animation: bgReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation-delay: 0.3s;
+  }
+</style>
+
+<div class="relative z-10 min-h-screen flex items-center justify-center px-4 py-16">
   <div class="w-full max-w-md">
 
     <!-- Logo / Header -->
     <div class="text-center mb-10">
-      <div class="inline-flex items-center justify-center w-20 h-20 glass rounded-2xl glow mb-6">
-        <img src="/assets/grana.png" alt="Grana" class="w-20 h-20 scale-[3] object-contain pointer-events-none select-none animate-float inline-block" />
+      <div class="inline-flex items-center justify-center mb-6">
+        <div style="transform: scale(2.2);">
+          <img src="/assets/grana.png?v=novo" alt="Grana"
+            class="w-24 h-24 object-contain pointer-events-none select-none animate-float inline-block" />
+        </div>
       </div>
+
       <h1 class="text-3xl font-bold gradient-text tracking-tight">Criar Conta</h1>
       <p class="mt-2 text-slate-400 text-sm">Junte-se ao portfólio mais sombrio do mercado.</p>
     </div>
@@ -22,28 +52,24 @@
       <p class="text-slate-400 text-sm mb-8">Preencha os campos abaixo para criar sua conta.</p>
 
       <!-- Error message area -->
-      <div id="error-banner" class="hidden mb-6 p-4 glass rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-sm"></div>
+      <div id="error-banner"
+        class="hidden mb-6 p-4 glass rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 text-sm"></div>
 
-      <form id="register-form" method="POST" action="/register" class="space-y-5" onsubmit="return validatePasswords(event)">
+      <form id="register-form" method="POST" action="/register" class="space-y-5"
+        onsubmit="return validatePasswords(event)">
         <!-- Username -->
         <div class="space-y-2">
           <label for="username" class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Usuário</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 pointer-events-none">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </span>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              required
-              autocomplete="username"
-              placeholder="seu_usuario"
+            <input id="username" name="username" type="text" required autocomplete="username" placeholder="seu_usuario"
               minlength="3"
-              class="w-full pl-10 pr-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/30 transition-all duration-200 text-sm"
-            />
+              class="w-full pl-10 pr-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/30 transition-all duration-200 text-sm" />
           </div>
         </div>
 
@@ -53,52 +79,39 @@
           <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 pointer-events-none">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </span>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              autocomplete="new-password"
-              placeholder="••••••••"
-              minlength="6"
-              class="w-full pl-10 pr-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/30 transition-all duration-200 text-sm"
-            />
+            <input id="password" name="password" type="password" required autocomplete="new-password"
+              placeholder="••••••••" minlength="6"
+              class="w-full pl-10 pr-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/30 transition-all duration-200 text-sm" />
           </div>
           <p class="text-slate-600 text-xs pl-1">Mínimo 6 caracteres</p>
         </div>
 
         <!-- Confirm Password -->
         <div class="space-y-2">
-          <label for="confirm_password" class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Confirmar Senha</label>
+          <label for="confirm_password"
+            class="block text-xs font-bold text-slate-400 uppercase tracking-widest">Confirmar Senha</label>
           <div class="relative">
             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500 pointer-events-none">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             </span>
-            <input
-              id="confirm_password"
-              name="confirm_password"
-              type="password"
-              required
-              autocomplete="new-password"
+            <input id="confirm_password" name="confirm_password" type="password" required autocomplete="new-password"
               placeholder="••••••••"
-              class="w-full pl-10 pr-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/30 transition-all duration-200 text-sm"
-            />
+              class="w-full pl-10 pr-4 py-3 glass rounded-xl text-slate-100 placeholder-slate-600 border border-white/10 focus:border-brand-500/50 focus:outline-none focus:ring-1 focus:ring-brand-500/30 transition-all duration-200 text-sm" />
           </div>
           <!-- Password match indicator -->
           <div id="match-indicator" class="hidden text-xs pl-1 transition-all duration-200"></div>
         </div>
 
         <!-- Submit -->
-        <button
-          id="submit-btn"
-          type="submit"
-          class="w-full py-3 px-4 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all duration-200 glow-sm hover:scale-[1.02] active:scale-[0.98] mt-2 text-sm tracking-wide uppercase"
-        >
+        <button id="submit-btn" type="submit"
+          class="w-full py-3 px-4 bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold rounded-xl transition-all duration-200 glow-sm hover:scale-[1.02] active:scale-[0.98] mt-2 text-sm tracking-wide uppercase">
           <span id="btn-text">Criar Conta</span>
           <span id="btn-loading" class="hidden">Criando conta...</span>
         </button>
@@ -106,13 +119,17 @@
 
       <!-- Divider -->
       <div class="relative my-8">
-        <div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
-        <div class="relative flex justify-center"><span class="px-4 glass text-slate-500 text-xs uppercase tracking-widest rounded-full">ou</span></div>
+        <div class="absolute inset-0 flex items-center">
+          <div class="w-full border-t border-white/10"></div>
+        </div>
+        <div class="relative flex justify-center"><span
+            class="px-4 glass text-slate-500 text-xs uppercase tracking-widest rounded-full">ou</span></div>
       </div>
 
       <p class="text-center text-slate-400 text-sm">
         Já tem conta?
-        <a href="/login" class="text-brand-400 hover:text-brand-300 font-bold transition-colors ml-1 hover:underline">Entrar</a>
+        <a href="/login"
+          class="text-brand-400 hover:text-brand-300 font-bold transition-colors ml-1 hover:underline">Entrar</a>
       </p>
     </div>
 
@@ -126,13 +143,13 @@
 {% block scripts %}
 <script>
   const passwordInput = document.getElementById('password');
-  const confirmInput  = document.getElementById('confirm_password');
+  const confirmInput = document.getElementById('confirm_password');
   const matchIndicator = document.getElementById('match-indicator');
-  const errorBanner    = document.getElementById('error-banner');
-  const form           = document.getElementById('register-form');
-  const btnText        = document.getElementById('btn-text');
-  const btnLoading     = document.getElementById('btn-loading');
-  const submitBtn      = document.getElementById('submit-btn');
+  const errorBanner = document.getElementById('error-banner');
+  const form = document.getElementById('register-form');
+  const btnText = document.getElementById('btn-text');
+  const btnLoading = document.getElementById('btn-loading');
+  const submitBtn = document.getElementById('submit-btn');
 
   // Live password match feedback
   confirmInput.addEventListener('input', () => {
