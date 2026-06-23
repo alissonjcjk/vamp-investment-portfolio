@@ -17,6 +17,49 @@ Esta plataforma web permite:
 
 ---
 
+## 📸 Galeria da Aplicação
+
+Confira abaixo o design visual focado em *Glassmorphism dark*, criado para transmitir o sentimento de uma ferramenta fintech premium e exclusiva, com todas as telas que desenvolvemos.
+
+### 1. Autenticação (Login & Registro)
+Nossa tela de entrada funde blocos de vidro sobre backgrounds cinematográficos em *fade-in*, dando boas-vindas aos novos e velhos investidores à carteira sombria.
+<div align="center">
+  <img src="./src/assets/pag-registro.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" /> 
+  &nbsp;
+  <img src="./src/assets/pag-login.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+</div>
+
+### 2. Dashboard: Estado Inicial (Vazio)
+Para quem acaba de criar a conta, o software apresenta um ambiente imersivo (com arte e animações baseadas no tema *Vamp*), chamando atenciosamente o utente à ação de cadastrar seu primeiro investimento. É composto por diversas sessões ocultas de navegação que interagem por scroll de tela.
+<div align="center" style="margin-bottom: 10px;">
+  <img src="./src/assets/dashboard-vazio.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+  &nbsp;
+  <img src="./src/assets/dashboard-vazio-1.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+</div>
+<div align="center">
+  <img src="./src/assets/dashboard-vazio-2.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+  &nbsp;
+  <img src="./src/assets/dashboard-vazio-3.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+</div>
+
+### 3. Operações Desacopladas (Modais Assíncronos)
+As ações vitais como "Adicionar Novo Ativo" (CR) e "Excluir" (D) nunca recarregam brutalmente a página. Elas chamam caixas de diálogo modais fluídas que embaçam os fundos da tela em tempo-real (backdrop-blur API), provendo sumários antes do ok final.
+<div align="center">
+  <img src="./src/assets/modal-adc-ativo.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+  &nbsp;
+  <img src="./src/assets/exclusão-ativo.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+</div>
+
+### 4. Dashboard Completo: A Magia do Portfólio
+Ao popular os ativos com valores, um gráfico moderno de *Doughnut* via ChartJS desperta, distribuindo automaticamente a exposição por ativo com esquemas de cores vivas calculadas direto do banco de dados Rust. Nos recortes inferiores, revelam-se os visuais de estatística e a requintada área de encaixe (Dovetail Joint) de "Contatos".
+<div align="center">
+  <img src="./src/assets/dashboard-cheio.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+  &nbsp;
+  <img src="./src/assets/dashboard-cheio-2.png" width="48%" style="border-radius: 12px; border: 1px solid #333;" />
+</div>
+
+---
+
 ## 🚀 Como executar o projeto
 
 Podes pôr a aplicação a rodar do zero em menos de 5 minutos, garantindo que o PostgreSQL esteja via Docker, e rodando a aplicação com Cargo:
