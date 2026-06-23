@@ -378,7 +378,7 @@
   <div class="relative mt-20 mb-24 mx-auto max-w-4xl flex flex-col items-center opacity-0 transition-opacity duration-1000 reveal-on-scroll">
     <h2 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-400 to-indigo-400 tracking-tight mb-16 scale-50 translate-y-10 opacity-0 transition-all duration-[1.5s] ease-out reveal-center">Contatos</h2>
     
-    <div class="relative flex flex-col md:flex-row items-center justify-center gap-16 w-full px-4">
+    <div class="relative flex flex-col md:flex-row items-center justify-center gap-12 md:gap-0 md:-space-x-6 w-full px-4">
       
       <!-- Money burst effect triggered automatically at 1.8s -->
       <div class="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 pointer-events-none items-center justify-center money-burst">
@@ -391,16 +391,16 @@
       </div>
 
       <!-- Photo from left -->
-      <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-[2rem] overflow-visible border border-white/10 glow-sm -translate-x-full opacity-0 transition-all duration-[1.8s] ease-out reveal-item-left shadow-2xl flex-shrink-0 bg-slate-900 z-10">
+      <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-[2rem] overflow-hidden border border-white/10 glow-sm -translate-x-full opacity-0 transition-all duration-[1.8s] ease-out reveal-item-left shadow-2xl flex-shrink-0 bg-slate-900 z-10">
         <img src="/assets/eu.jpg" alt="Alisson" class="w-full h-full object-cover object-top scale-105 hover:scale-110 transition-transform duration-500 rounded-[2rem]">
-        <!-- Chave -->
-        <div class="hidden md:block absolute top-1/2 -right-8 -translate-y-1/2 text-6xl drop-shadow-lg z-20 key-icon">🔑</div>
       </div>
       
-      <!-- GitHub from right -->
-      <div class="relative flex flex-col items-center md:items-start text-center md:text-left translate-x-full opacity-0 transition-all duration-[1.8s] ease-out reveal-item-right bg-slate-900/80 backdrop-blur-md p-8 rounded-[2rem] border border-white/5 w-full md:w-auto shadow-2xl z-10">
-        <!-- Fechadura -->
-        <div class="hidden md:block absolute top-1/2 -left-8 -translate-y-1/2 text-6xl drop-shadow-lg z-20 lock-icon">🔒</div>
+      <!-- GitHub & Info from right -->
+      <div class="relative flex flex-col items-center md:items-start text-center md:text-left translate-x-full opacity-0 transition-all duration-[1.8s] ease-out reveal-item-right bg-slate-900/90 backdrop-blur-md p-8 rounded-[2rem] border border-white/5 w-full md:w-auto shadow-2xl z-20">
+        
+        <!-- Encaixe estilo Rabo de Andorinha (Dovetail Joint) protruding left -->
+        <div class="hidden md:block absolute top-[35%] -left-[30px] w-[32px] h-[30%] bg-slate-900/90 backdrop-blur-md border-t border-b border-white/5 z-30" style="clip-path: polygon(100% 0, 0 20%, 0 80%, 100% 100%);"></div>
+
         <p class="text-sm text-slate-400 uppercase tracking-widest font-bold mb-2">Desenvolvido por</p>
         <p class="text-4xl font-bold text-slate-100 mb-8 tracking-tight">Alisson</p>
         <div class="flex flex-col gap-4 w-full">
